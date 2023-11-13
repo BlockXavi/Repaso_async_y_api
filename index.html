@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Clase de repaso Asincronía y APIs en JS</h1>
+
+    <h2>Personajes Rick and Morty</h2>
+
+    <ul id="lista-personajes"></ul>
+
+    <button id="boton-personajes">Obtener Personajes</button>
+
+</body>
+
+<script>
+
+    // Función para obtener personajes
+    function obtenerPersonajes() {
+        const respuesta = fetch('https://rickandmortyapi.com/api/character/')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Respuesta completa API', data)
+                const listaPersonajes = document.getElementById('lista-personajes')
+                data.results.forEach((personaje) => {
+                    const li = document.createElement('LI')
+                    li.textContent = personaje.name
+                    listaPersonajes.appendChild(li)
+                })
+            })
+    }
+
+    // Defino un oyente de eventos al botón
+    const botonPersonajes = document.getElementById('boton-personajes')
+    botonPersonajes.addEventListener('click', obtenerPersonajes)
+
+</script>
+
+</html>
