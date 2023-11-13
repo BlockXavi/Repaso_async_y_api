@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="llamarApi()">Llamar API</button> <!-- Creo un botón para llamar a la API -->
+</body>
+
+<script>
+
+    // Defino las tres promesas
+    const promesa1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('Promesa 1 resuelta')
+        }, 3000)    
+    })
+    
+    // Defino la promesa2 como fallida para poder verlo con allSettle
+    const promesa2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject('Promesa 2 fallida')
+        }, 3000)    
+    })
+
+    const promesa3 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('Promesa 3 resuelta')
+        }, 3000)    
+    })
+
+    async function llamarApi() {
+        try {
+            const promesasResueltas = await Promise.allSettled([promesa1, promesa2, promesa3])
+            console.log('Promesas Resueltas: ', promesasResueltas)
+        } catch (error) {
+            console.log('Error llamando a la API:', error)
+        }
+    }
+
+</script>
+</html>
