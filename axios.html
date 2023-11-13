@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llamada Api con axios</title>
+</head>
+
+<body>
+    <button onclick="llamarApi()">Llamar API</button> <!-- Creo un botón para llamar a la API -->
+</body>
+
+<!-- Para incluir axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Código -->
+<script>
+    async function llamarApi() {
+        try {
+            const respuesta = await axios.get('https://rickandmortyapi.com/api/character/')
+            console.log('Promesas Resueltas: ', respuesta)
+        } catch (error) {
+            console.log('Error llamando a la API:', error)
+        }
+    }
+
+</script>
+</html>
